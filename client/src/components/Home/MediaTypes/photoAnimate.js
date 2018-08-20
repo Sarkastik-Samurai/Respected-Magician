@@ -1,7 +1,6 @@
 
 import React from "react";
-import { AsyncStorage, Button, StyleSheet, View, StatusBar, Animated, ScrollView, CameraRoll, Image, Dimensions, TouchableHighlight, TouchableWithoutFeedback } from "react-native";
-import ImageOverlay from "react-native-image-overlay";
+import { AsyncStorage, Button, StyleSheet, View, StatusBar, Animated, ScrollView, CameraRoll, Image, Dimensions } from "react-native";
 // import Gallery from "react-photo-gallery";
 
 const xOffset = new Animated.Value(0);
@@ -47,24 +46,15 @@ const transitionAnimation = index => {
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 
-export default class PhotoVideo extends React.Component {
+export default class PhotoAnimate extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      photos: [],
-      touched: false
+      photos: []
     };
   }
 
-  onTouch = () => {
-    this.setState({ touched: true })
-  }
-
-  offTouch = () => {
-    this.setState({ touched: false })
-  }
-  
   photoGet = () => {
     CameraRoll.getPhotos({
       first: 20,
@@ -91,50 +81,20 @@ export default class PhotoVideo extends React.Component {
            <Animated.ScrollView scrollEventThrottle={16}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: xOffset } } }],
-          { useNativeDriver: true } 
+          { useNativeDriver: true }
         )}
         horizontal
         pagingEnabled
         style={styles.scrollView}
       >
-       {this.state.photos.map((p, i) => {
-      if (this.state.touched === false) { 
-       return (
-        <TouchableHighlight key={i} onPress={ () => this.onTouch() } >
-        <Image
-           key={i}
-           style={{
-            width: SCREEN_WIDTH,
-            height: SCREEN_HEIGHT,
-            // resizeMode: Image.resizeMode.contain
-           }}
-           source={{ uri: p.node.image.uri }}
-         />
-      </TouchableHighlight>
-       );
-      } else if(this.state.touched === true) {
-        return (
-        <TouchableHighlight key={i} onPress={ () => this.offTouch() } >
-        <ImageOverlay
-           overlayAlpha={ 0.25 }
-           blurRadius={ 10 }
-           contentPosition={ "center" }
-           title={ "Your Photo" }
-           titleStyle={{ color: 'white', fontWeight: 'bold' }}
-           key={i}
-           height={ SCREEN_HEIGHT - 70 }
-          source={{ uri: p.node.image.uri }}
-         />
-        </TouchableHighlight>
-       );
-      }
-     })} 
+        <Screen index={0} />
+        <Screen index={1} />
+        <Screen index={2} />
      </Animated.ScrollView>
         <Button title="I'm done, sign me out" onPress={this._signOutAsync} />
         <StatusBar barStyle="default" />
       </View>
     );
-   
   }
 
   _signOutAsync = async () => {
@@ -145,10 +105,26 @@ export default class PhotoVideo extends React.Component {
 
 
 const Screen = props => {
+
+  const photo=[];
+
   return (
     <View style={styles.scrollPage}>
       <Animated.View style={[styles.screen, transitionAnimation(props.index)]}>
-        <Text style={styles.text}>{props.text}</Text>
+      {photo.map((p, i) => {
+       return (
+         <Screen
+           key={i}
+           style={{
+            width: SCREEN_WIDTH,
+            height: SCREEN_HEIGHT,
+            // resizeMode: Image.resizeMode.contain
+           }}
+
+           source={{ uri: p.node.image.uri }}
+         />
+       );
+     })}
       </Animated.View>
     </View>
   );

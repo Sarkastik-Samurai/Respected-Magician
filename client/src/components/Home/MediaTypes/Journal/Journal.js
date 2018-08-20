@@ -34,7 +34,7 @@ export default class Journal extends React.Component {
   getEntries () {
     console.log('retrieving entries from db', this.state.userId)
 
-    fetch('http://192.168.0.103:3000/journal/' + this.state.userId)
+    fetch('http://73.171.26.23:3000/journal/' + this.state.userId)
     .then((response) => response.json())
     .then((response) => {
       console.log('heres data', response)
@@ -50,10 +50,10 @@ export default class Journal extends React.Component {
   saveEntry (content) {
     console.log('what is passed in', content)
 
-    //make sure url is not set to https and set to your ip address instead of localhost or it will give that red error in simulator
-
+        //make sure url is not set to https and set to your ip address instead of localhost or it will give that red error in simulator
+        let id = this.state.data[this.state.data.length - 1].id + 1 || 1
     //get id to autogenerate as db currently requires it to be unique, until then - manually change the id value each time this is tested
-    fetch("http://192.168.0.103:3000/journal", {method: "POST", headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify({id: this.state.data[this.state.data.length-1].id+1, userId: this.state.userId, title: content.title, description: content.description, file: content.file})})
+    fetch("http://73.171.26.23:3000/journal", {method: "POST", headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify({id: id, userId: this.state.userId, title: content.title, description: content.description, file: content.file})})
     .then((responseData) => {
       AlertIOS.alert(
         "Entry saved!",
