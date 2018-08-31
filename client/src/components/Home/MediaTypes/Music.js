@@ -115,7 +115,8 @@ export default class Music extends Component {
     return (
       <ImageBackground source={require('../../../../assets/img/gradient-background-image.png')} style={{ width: '100%', height: '100%' }}>
         <View style={styles.homeButtonRow}>
-          <TouchableOpacity>
+          <TouchableOpacity accessible={true}
+            accessibilityLabel={'Back to Home Screen'}>
             <MaterialCommunityIcons 
               name="home-outline" 
               size={30}

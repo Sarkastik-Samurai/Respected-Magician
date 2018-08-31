@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 
-import { StyleSheet, View, Text, Button, TextInput, FlatList, SafeAreaView, SectionList, TouchableOpacity, AsyncStorage, ImageBackground} from "react-native";
+import { StyleSheet, View, Text, Button, TextInput, FlatList, SafeAreaView, SectionList, TouchableOpacity, AsyncStorage, Alert } from "react-native";
 // import dummyData from "./dummyData/journalData.js";
 import { List, ListItem } from "react-native-elements";
 import {
@@ -44,6 +44,10 @@ class SettingsMain extends Component {
     await AsyncStorage.removeItem("userToken");
     this.props.navigation.navigate("Auth");
   };
+  _clearAsync = async () => {
+    await AsyncStorage.clear();
+    Alert.alert("Async Storage cleared")
+  };
 
   render() {
     if (this.state.view === 'default') {
@@ -81,41 +85,31 @@ class SettingsMain extends Component {
                   { backgroundColor: this.state.color }
                 ]}
               >
-              </TouchableOpacity>
-            </View>
+              <Text style={styles.text}>Change Settings</Text>
+            </TouchableOpacity>
+          </View>
 
-            <View style={styles.container}>
-              <TouchableOpacity
-                style={[
-                  styles.button,
-                ]}
-                onPress={() => { this.changeView('edit') }}
-                >
-                <Text style={styles.text}>Change Settings</Text>
-              </TouchableOpacity>
-            </View>
+          <SafeAreaView >
+            <List>
 
-            <SafeAreaView >
-              <List>
-
-                <SectionList
-                renderItem={({ item, index, section }) => <Text key={index}>{item}</Text>}
-                renderSectionHeader={({ section: { title } }) => (
-                  <Text style={{ fontWeight: 'bold' }}>{title}</Text>
-                )}
-                sections={[
-                  { title: 'Name', data: ['Bob'] },
-                  { title: 'Media Types', data: ['PhotoVideo', 'Music', 'Journal'] },
-                  { title: 'Interests', data: ['hiking', 'vintage cars', 'bowling'] },
-                  { title: 'Discoverable', data: ['true'] },
-                  { title: 'Journal Entries for Moral Support', data: '5' },
-                ]}
-                keyExtractor={(item, index) => item + index}
-                />
-              </List>
-            </SafeAreaView>
-            <Button title="Log Out" onPress={this._signOutAsync}/>
-          </ImageBackground>
+              <SectionList
+              renderItem={({ item, index, section }) => <Text key={index}>{item}</Text>}
+              renderSectionHeader={({ section: { title } }) => (
+                <Text style={{ fontWeight: 'bold' }}>{title}</Text>
+              )}
+              sections={[
+                { title: 'Name', data: ['Bob'] },
+                { title: 'Media Types', data: ['PhotoVideo', 'Music', 'Journal'] },
+                { title: 'Interests', data: ['hiking', 'vintage cars', 'bowling'] },
+                { title: 'Discoverable', data: ['true'] },
+                { title: 'Journal Entries for Moral Support', data: '5' },
+              ]}
+              keyExtractor={(item, index) => item + index}
+              />
+            </List>
+          </SafeAreaView>
+          <Button title="Log Out" onPress={this._signOutAsync}/>
+          <Button title="Clear cache" onPress={this._clearAsync}/>
         </View>
       )
     }

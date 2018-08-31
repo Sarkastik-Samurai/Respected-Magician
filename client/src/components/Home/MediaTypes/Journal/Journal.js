@@ -1,8 +1,7 @@
 import React from "react";
 import Modal from "react-native-modal";
 import { Dimensions, AlertIOS, StyleSheet, View, Text, FlatList, TouchableOpacity, Image, ImageBackground } from "react-native";
-import { MaterialIcons, MaterialCommunityIcons
-} from '@expo/vector-icons';
+import { MaterialIcons, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import JournalEntry from "./JournalEntry";
 import AddAnEntry from "./AddAnEntry";
 import ReadFullEntry from "./ReadFullEntry";
@@ -176,7 +175,8 @@ export default class Journal extends React.Component {
               flexDirection: "row",
               paddingLeft: 15,
               marginTop: 80,}}>
-              <TouchableOpacity onPress={() => {this.closeQuoteModal(); this.clearPositiveImage()}}>
+              <TouchableOpacity accessible={true}
+                accessibilityLabel={'Close Quote Modal'} onPress={() => {this.closeQuoteModal(); this.clearPositiveImage()}}>
                 <View style={{ justifyContent: 'center'}}>
 
                   <Image
@@ -204,18 +204,30 @@ export default class Journal extends React.Component {
             style={{ width: '100%', height: '100%' }}
           >
             <View style={styles.navRow}>
-              <MaterialIcons
-                name="library-add"
-                size={32}
-                color="#ffffff"
-                onPress={() => { this.changeView('makeEntry') }}
-              />
-              <MaterialCommunityIcons
-                name="home-outline"
-                size={30}
-                color="#ffffff"
-                onPress={() => this.props.navigation.navigate("Home")}
-              />
+              <TouchableOpacity accessible={true}
+                accessibilityLabel={'Make a journal entry'}>
+                <MaterialIcons
+                  name="library-add"
+                  size={32}
+                  color="#ffffff"
+                  onPress={() => { this.changeView('makeEntry') }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity accessible={true}
+                accessibilityLabel={'Back to home screen'}>
+                {/* <Ionicons
+                  name="ios-home-outline"
+                  size={26}
+                  color="#ffffff"
+                  onPress={() => this.props.navigation.navigate("Home")}
+                /> */}
+                <MaterialCommunityIcons
+                  name="home-outline"
+                  size={30}
+                  color="#ffffff"
+                  onPress={() => this.props.navigation.navigate("Home")}
+                  />
+              </TouchableOpacity>
             </View>
             <FlatList
               style={styles.flatList}
