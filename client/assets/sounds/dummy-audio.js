@@ -48,9 +48,9 @@ const PLAYLIST = [
       'https://res.cloudinary.com/dwysumxzw/image/upload/v1535688344/Screen_Shot_2018-08-30_at_9.05.19_PM.png'
     ),
     new PlaylistItem(
-      'Peter Meows Reggae',
-      'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Podington_Bear_-_Rubber_Robot.mp3',
-      'https://res.cloudinary.com/dwysumxzw/image/upload/v1535689252/Screen_Shot_2018-08-30_at_9.18.55_PM.png'
+      'Peter Meows Ft. Tiesto',
+      'https://res.cloudinary.com/dwysumxzw/video/upload/v1535730109/_Pete_Meows_.m4a',
+      'https://res.cloudinary.com/dwysumxzw/image/upload/v1535730087/Pete_Album_Art.jpg'
     ),
   ];
 
