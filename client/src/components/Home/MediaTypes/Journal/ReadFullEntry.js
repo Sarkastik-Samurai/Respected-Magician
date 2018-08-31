@@ -12,8 +12,8 @@ const ReadFullEntry = (props) => {
         style={{ width: '100%', height: '100%' }}
       >
         <View style={styles.navRow}>
-          <Entypo
-            name="tools"
+          <Ionicons
+            name="ios-arrow-back"
             size={30}
             color="#ffffff"
             paddingLeft='10'
@@ -27,36 +27,48 @@ const ReadFullEntry = (props) => {
             onPress={() => { props.changeView('default') }}
           />
         </View>
+
         <View style={{
-          width: DEVICE_WIDTH - 95,
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          flexDirection: "row"
-        }}>
-          <View style={styles.container}>
-            <Text style={{ padding: 15 }}>
+          // width: DEVICE_WIDTH - 95,
+            marginTop: 7,
+            justifyContent: "center",
+            // alignItems: "center",
+            flexDirection: "row"
+          }}>
+          {/* <View style={styles.container}>
+            {/* <Text style={{ padding: 15 }}> 
+            <Text>
             </Text>
-          </View>
-          <Ionicons
+          </View> */}
+          {/* <Ionicons
             name="md-star-outline"
             size={24}
             color="#ffffff"
-          />
-          <Text style={{ textAlign: "center", color: '#ffffff' }}> {props.entry.title}
+          /> */}
+          <Text style={{ 
+            // textAlign: "center", 
+            color: '#ffffff', 
+            fontSize: 20,
+            }}> {props.entry.title}
           </Text>
-          <Ionicons
+          {/* <Ionicons
             name="md-star-outline"
             size={24}
             color="#ffffff"
-          />
+          /> */}
         </View>
+
         <Text style={{ padding: 0.5 }}> </Text>
         <View style={{
           backgroundColor: 'lightcyan'
         }}>
           <Text style={{ padding: 0.5 }}>
           </Text>
-          <Text style={{ fontSize: 11, textAlign: "center", color: 'rgb(26, 201, 141)' }}> {props.entry.description}
+          <Text style={{ 
+              fontSize: 14, 
+              textAlign: "center", 
+              color: '#0B4E7A'
+            }}> {props.entry.description}
           </Text>
           <Text style={{ padding: 0.5 }}>
           </Text>

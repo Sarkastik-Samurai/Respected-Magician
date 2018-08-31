@@ -175,6 +175,7 @@ export default class Journal extends React.Component {
               justifyContent: "space-between",
               flexDirection: "row",
               paddingLeft: 15,
+              paddingRight: 15,
               marginTop: 80,}}>
               <TouchableOpacity onPress={() => {this.closeQuoteModal(); this.clearPositiveImage()}}>
                 <View style={{ justifyContent: 'center'}}>
