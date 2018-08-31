@@ -46,33 +46,32 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
-    return (
-      <ImageBackground source={require("../../../assets/img/gradient-background-image.png")} style={{ width: "100%", height: "100%" }}>
+    return <ImageBackground source={require("../../../assets/img/gradient-background-image.png")} style={{ width: "100%", height: "100%" }}>
         <View style={styles.container}>
           <View style={styles.iconsContainerTopRow}>
-            <TouchableOpacity onPress={this._switchToMusic} >
+            <TouchableOpacity onPress={this._switchToMusic} accessible={true} accessibilityLabel={"Music Haven"}>
               <Ionicons name="ios-musical-notes-outline" size={130} color="white" />
             </TouchableOpacity>
-          <TouchableOpacity onPress={this._switchToPhotoVideo}>
+            <TouchableOpacity onPress={this._switchToPhotoVideo} accessible={true} accessibilityLabel={"Photo Haven"}>
               <Ionicons name="ios-image-outline" size={130} color="white" />
             </TouchableOpacity>
           </View>
           <View style={styles.iconsContainerBottomRow}>
-            <TouchableOpacity onPress={this._switchToJournal}>
+            <TouchableOpacity onPress={this._switchToJournal} accessible={true} accessibilityLabel={"Journal Haven"}>
               <Image style={{ width: 130, height: 130 }} source={require("../../../assets/img/journal-icon.png")} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={this._switchToContacts}>
+          <TouchableOpacity onPress={this._switchToContacts} accessible={true}
+            accessibilityLabel={'Contacts Haven'}>
               <Ionicons name="ios-contacts-outline" size={130} color="white" />
             </TouchableOpacity>
           </View>
           <View style={styles.settingsIconContainer}>
             <TouchableOpacity onPress={this._switchToSettings}>
-                <EvilIcons name="gear" size={48} color="white" />
+              <EvilIcons name="gear" size={48} color="white" />
             </TouchableOpacity>
           </View>
         </View>
-      </ImageBackground>
-    )
+      </ImageBackground>;
   }
 }
 

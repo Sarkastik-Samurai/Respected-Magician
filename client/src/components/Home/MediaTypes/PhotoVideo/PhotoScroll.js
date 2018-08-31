@@ -76,13 +76,17 @@ export default class PhotoScroll extends React.Component {
          >
         <View style={styles.navRow}>
           {/* this and the associated style should be extracted to a component for reuse */}
-          <Ionicons color="white" size={ 35 } name="ios-images" onPress={() => this.optionsToggle()} />
-          <MaterialCommunityIcons 
-            name="home-outline" 
-            size={30}
-            color="#ffffff"
-            onPress={ () => this.props._switchToHome() }
-          />
+          <TouchableHighlight accessible={true} accessibilityLabel={'Add a Photo'}>
+            <Ionicons color="white" size={ 35 } name="ios-images" onPress={() => this.optionsToggle()} />
+          </TouchableHighlight>
+          <TouchableHighlight accessible={true} accessibilityLabel={'Back to Home Screen'}>
+            <MaterialCommunityIcons
+              name="home-outline" 
+              size={35}
+              color="#ffffff"
+              onPress={ () => this.props._switchToHome() }
+              />
+          </TouchableHighlight>
         </View>
         </ImageOverlay>
       </TouchableHighlight>
@@ -143,6 +147,17 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: "white"
   },
+  // navRow: {
+  //   height: 40,
+  //   width: SCREEN_WIDTH - 15,
+  //   justifyContent: "space-between",
+  //   alignItems: "flex-end",
+  //   flexDirection: "row",
+  //   paddingLeft: 15,
+  //   // marginRight: 4,
+  //   marginTop: 45,
+  //   marginBottom: 735
+  // },
   navRow: {
     height: 40,
     width: SCREEN_WIDTH - 15,
@@ -150,10 +165,10 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     flexDirection: "row",
     paddingLeft: 15,
-    // marginRight: 4,
+    paddingRight: 15,
     marginTop: 45,
-    marginBottom: 735
-  },
+    marginBottom: SCREEN_HEIGHT - SCREEN_HEIGHT * .10
+  }
 });
 
 //? = Still Testing
